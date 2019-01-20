@@ -1,0 +1,480 @@
+swagger: '2.0'
+info:
+  description: |
+    API documentation for the hockey-pool-generator-api node backend.
+  version: 1.0.0
+  title: Swagger Hockey Pool Generator
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: team
+  description: Access to teams stats
+- name : game
+  description : Acess to game stats
+- name: scoreboard
+  description: Access scoreboard stats
+- name: season
+  description: Access season stats
+- name: player
+  description: Access players stats
+# schemes:
+# - http
+paths:
+  /team/overall-team-standings:
+    get:
+      tags:
+      - team
+      summary: Find overall team standings
+      description: Overall NHL team standings
+      operationId: overallTeamStandings
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /team/conference-team-standings:
+    get:
+      tags:
+      - team
+      summary: Finds team standings filtered by conferences
+      description: Conferences NHL team standings
+      operationId: conferenceTeamStandings
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /team/division-team-standings:
+    get:
+      tags:
+      - team
+      summary: Finds team standings filtered by division
+      description: Divisions NHL team standings
+      operationId: divisionTeamStandings
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /team/playoff-team-standings:
+    get:
+      tags:
+      - team
+      summary: Finds team standings for playoffs
+      description: Playoffs NHL team standings
+      operationId: playoffTeamStandings
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /teams/team-gamelogs/{teamId}:
+    get:
+      tags:
+      - team
+      summary: Find gamelogs by team ID
+      description: Returns a single team gamelogs
+      operationId: teamGameLogs
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return gamelogs
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /games/full-game-schedule:
+    get:
+      tags:
+      - game
+      summary: Finds games schedule
+      description: NHL game schedule
+      operationId: fullGameSchedule
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /games/full-game-schedule/{teamId}:
+    get:
+      tags:
+      - game
+      summary: Find game schedule by team
+      description: Returns game schedule for a team
+      operationId: fullGameScheduleByTeam
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return schedule
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /games/daily-game-schedule/{date}:
+    get:
+      tags:
+      - game
+      summary: Find daily game schedule by date
+      description: Returns a daily game schedule for a date
+      operationId: dailyGameScheduleByDate
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return schedule
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /games/game-boxscore/{gameId}:
+    get:
+      tags:
+      - game
+      summary: Find boxscore by game
+      description: Returns a single boxscore for a game
+      operationId: gameBoxscoreByGameId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: gameId
+        in: path
+        description: game ID to return boxscore
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /games/game-playbyplay/{gameId}:
+    get:
+      tags:
+      - game
+      summary: Find game play-by-play by game
+      description: Returns a single game play-by-play for a game
+      operationId: gamePlaybyplayByGameId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: gameId
+        in: path
+        description: game ID to return game play-by-play
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /games/game-startinglineup/{gameId}:
+    get:
+      tags:
+      - game
+      summary: Find game starting lineup by game
+      description: Returns a single starting lineup for a game
+      operationId: gameStartingLineupByGame
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: gameId
+        in: path
+        description: game ID to return game starting lineup
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /scoreboard/{date}:
+    get:
+      tags:
+      - scoreboard
+      summary: Find scoreboard by date
+      description: Returns a scoreboard for a date
+      operationId: scoreboard
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return scoreboard
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /seasons/current-season/{date}:
+    get:
+      tags:
+      - game
+      summary: Find current season info by date
+      description: Returns current season info for a date
+      operationId: currentSeason
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return scoreboard
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /seasons/latest-updates:
+    get:
+      tags:
+      - season
+      summary: Finds latest updates of the season
+      description: NHL latest updates
+      operationId: latestUpdates
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /players/active-players:
+    get:
+      tags:
+      - player
+      summary: Finds active players
+      description: NHL active players
+      operationId: activePlayers
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /players/active-players/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Find active players by team
+      description: Returns players for a team
+      operationId: activePlayersByTeamId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return active players
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/players-injuries:
+    get:
+      tags:
+      - player
+      summary: Finds injured players
+      description: NHL injured players
+      operationId: injuredPlayers
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /players/players-injuries/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Find injured players by team
+      description: Returns injured players for a team
+      operationId: injuredPlayersByTeam
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return active players
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/player-gamelogs:
+    get:
+      tags:
+      - player
+      summary: Finds gamelogs players
+      description: NHL gamelogs players
+      operationId: playerGamelogs
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: successful operation
+  /players/roster-players/{date}:
+    get:
+      tags:
+      - player
+      summary: Find roster players by date
+      description: Returns roster players for a date
+      operationId: rosterPlayersByDate
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return roster players
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/roster-players/{date}/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Find roster players by date and teamd ID
+      description: Returns roster players for a date and a team ID
+      operationId: rosterPlayersByDateTeamId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return roster players
+        required: true
+        type: integer
+        format: int64
+      - name: teamId
+        in: path
+        description: teamd ID to return roster players
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/daily-player-stats/{date}:
+    get:
+      tags:
+      - player
+      summary: Find daily players stats by date
+      description: Returns daily players stats for a date
+      operationId: dailyPlayerStatsByDate
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return daily players stats
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/daily-player-stats/{date}/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Find daily players stats by date and teamd ID
+      description: Returns daily players stats for a date and a team ID
+      operationId: dailyPlayerStatsByDateTeamId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: date
+        in: path
+        description: date to return daily players stats
+        required: true
+        type: integer
+        format: int64
+      - name: teamId
+        in: path
+        description: teamd ID to return daily players stats
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/cumulative-player-stats-team/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Find cumulative player stats by team
+      description: Returns cumulative player stats for a team
+      operationId: cumulativePlayerStatsByTeam
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return cumulative player stats
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+  /players/cumulative-player-stats/{playerId}:
+    get:
+      tags:
+      - player
+      summary: Find cummulative player stats by player
+      description: Returns cummulative player stats for a player
+      operationId: cummulativePlayerStatsByTeam
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: playerId
+        in: path
+        description: ID of player to return cummulative player stats
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /test5792/test/1.0.0
+schemes:
+ - https
+ - http
